@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TWO</string>
-    <string name="button_main">Button</string>
+    <string name="button_main">Send</string>
     <string name="activity2_name">Second Activity</string>
     <string name="text_header">Message Received</string>
+    <string name="button_return">return</string>
 </resources>
