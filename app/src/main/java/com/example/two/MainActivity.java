@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG=MainActivity.class.getSimpleName();
+    public static final String EXTRA_MESSAGE="key.for.extra.MESSAGE";
+    private EditText mMessageEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public void LaunchSecondActivity(View view) {
         Log.d(LOG_TAG,"Button Clicked");
         Intent intent=new Intent(this,SecondActivity.class);
+        String message=mMessageEditText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE,message);
         startActivity(intent);
 
 
