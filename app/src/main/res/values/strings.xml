@@ -5,4 +5,8 @@
     <string name="text_header">Message Received</string>
     <string name="button_return">return</string>
     <string name="editText_main">Enter Your Message Here</string>
+    <string name="button_second">Reply</string>
+    <string name="editText_second">Enter your reply here</string>
+
+
 </resources>
