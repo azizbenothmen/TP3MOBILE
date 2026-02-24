@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+       mMessageEditText=findViewById(R.id.editText_main);
+        EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -30,9 +31,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LaunchSecondActivity(View view) {
+        String message;
         Log.d(LOG_TAG,"Button Clicked");
+       Log.d(LOG_TAG,mMessageEditText.toString());
+
         Intent intent=new Intent(this,SecondActivity.class);
-        String message=mMessageEditText.getText().toString();
+        message=mMessageEditText.getText().toString();
+        Log.d(LOG_TAG,message);
         intent.putExtra(EXTRA_MESSAGE,message);
         startActivity(intent);
 
