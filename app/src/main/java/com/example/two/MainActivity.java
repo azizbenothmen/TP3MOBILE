@@ -15,10 +15,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String LOG_TAG=MainActivity.class.getSimpleName();
-    public static final String EXTRA_MESSAGE="key.for.extra.MESSAGE";
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    public static final String EXTRA_MESSAGE = "key.for.extra.MESSAGE";
     private EditText mMessageEditText;
-    public static final int TEXT_REQUEST=1;
+    public static final int TEXT_REQUEST = 1;
     private TextView mReplyHeadTextView;
     private TextView mReplyTextView;
 
@@ -26,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       mMessageEditText=findViewById(R.id.editText_main);
-        mReplyHeadTextView=findViewById(R.id.text_header_reply);
-        mReplyTextView=findViewById(R.id.text_message_reply);
+        mMessageEditText = findViewById(R.id.editText_main);
+        mReplyHeadTextView = findViewById(R.id.text_header_reply);
+        mReplyTextView = findViewById(R.id.text_message_reply);
+        Log.d(LOG_TAG, "----------");
+        Log.d(LOG_TAG, "OnCreate");
 
         EdgeToEdge.enable(this);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -40,24 +42,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void LaunchSecondActivity(View view) {
         String message;
-        Log.d(LOG_TAG,"Button Clicked");
-       Log.d(LOG_TAG,mMessageEditText.toString());
+        Log.d(LOG_TAG, "Button Clicked");
+        Log.d(LOG_TAG, mMessageEditText.toString());
 
 
-        Intent intent=new Intent(this,SecondActivity.class);
-        message=mMessageEditText.getText().toString();
-        Log.d(LOG_TAG,message);
-        intent.putExtra(EXTRA_MESSAGE,message);
-        startActivityForResult(intent,TEXT_REQUEST);
+        Intent intent = new Intent(this, SecondActivity.class);
+        message = mMessageEditText.getText().toString();
+        Log.d(LOG_TAG, message);
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivityForResult(intent, TEXT_REQUEST);
 
 
     }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(requestCode==TEXT_REQUEST){
-            if(resultCode==RESULT_OK){
-                String reply=data.getStringExtra(SecondActivity.EXTRA_REPLY);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TEXT_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String reply = data.getStringExtra(SecondActivity.EXTRA_REPLY);
                 mReplyHeadTextView.setVisibility(View.VISIBLE);
                 mReplyTextView.setText(reply);
                 mReplyTextView.setVisibility(View.VISIBLE);
@@ -65,4 +68,30 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d(LOG_TAG,"onStart");
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.d(LOG_TAG,"onPause");
+    }
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        Log.d(LOG_TAG,"onRestart");
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        Log.d(LOG_TAG,"onStop");
+    }
+    public void onDestroy(){
+        super.onStop();
+        Log.d(LOG_TAG,"onDestroy");
+    }
+
+
 }
